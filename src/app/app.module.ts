@@ -9,6 +9,7 @@ import { ShopComponent } from './components/shop/shop.component';
 import { CartComponent } from './components/cart/cart.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
 
 
 
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     ItemComponent,
     ShopComponent,
     CartComponent,
-    NavbarComponent
+    NavbarComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule,

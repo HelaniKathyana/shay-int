@@ -1,9 +1,14 @@
-<div class="card" style="padding:10px; margin-top:20px">
+<div class="card">
   <img src="../../../assets/images/{{ item.image }}" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{ item.name }}</h5>
     <p class="card-text">{{ item.description }}</p>
-    <p class="card-text"><strong>Price:</strong> {{ item.price | currency: 'Rs. ' }}</p>
-    <a href="#" class="btn btn-primary">Add to Cart</a>
+    <p class="card-text"><strong>Price:</strong> {{ item.price | currency: 'LKR ' }}</p>
+    <button class="btn btn-primary" (click)="addToCart(item)">Add to Cart</button>
+    <ng-container *ngIf="addedToCart">
+      <div class="alert alert-success">
+        Item added to cart!
+      </div>
+    </ng-container>
   </div>
 </div>

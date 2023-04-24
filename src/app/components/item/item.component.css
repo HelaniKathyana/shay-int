@@ -1,0 +1,12 @@
+.card {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.alert-success {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
