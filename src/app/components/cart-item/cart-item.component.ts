@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Currency } from 'src/app/model/Currency';
 import { CartService } from 'src/app/services/cart.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -8,18 +10,24 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartItemComponent implements OnInit {
 
-  @Input() selectedCurrency: string;
   @Input() cartItems: any[] = [];
   @Output() itemRemoved = new EventEmitter<any>();
+  selectedCurrency: string;
+  currencyData: Currency;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private dataService: DataService) { }
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getItems();
+
+    this.dataService.currencyData.subscribe(data => {
+      this.currencyData = data;
+      this.selectedCurrency = this.currencyData ? this.currencyData.selectedCurrency : 'LKR';
+    });
   }
 
-  removeFromCart(item) {
-    this.cartService.removeFromCart(item);
+  removeFromCart(index: any) {
+    this.cartService.removeFromCart(index);
     this.cartItems = this.cartService.getItems();
     this.itemRemoved.emit(); // emit event when item is removed
   }

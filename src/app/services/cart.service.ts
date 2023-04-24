@@ -33,8 +33,7 @@ export class CartService {
     return this.items;
   }
 
-  removeFromCart(product) {
-    const index = this.items.findIndex(item => item.id === product.id);
+  removeFromCart(index) {
     if (index !== -1) {
       this.items.splice(index, 1);
       localStorage.setItem('cartItems', JSON.stringify(this.items));

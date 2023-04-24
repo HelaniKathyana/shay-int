@@ -1,20 +1,7 @@
 <div class="container">
-    <div class="row justify-content-end">
-        <div class="col-md-1 text-md-right">
-            <label for="currencySelect" class="mr-2">Convert to:</label>
-        </div>
-        <div class="col-md-1">
-            <div class="form-group mb-0">
-                <select class="form-control text-center" id="currencySelect" [(ngModel)]="selectedCurrency">
-                    <option value="LKR">LKR</option>
-                    <option value="USD">USD</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="row">
+    <div class="row" *ngIf="currencyData">
         <div *ngFor="let item of items" class="col-md-3">
-            <app-item [item]="item"></app-item>
+            <app-item [currencyData]="currencyData" [item]="item"></app-item>
         </div>
     </div>
 </div>

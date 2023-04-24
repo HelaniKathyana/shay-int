@@ -3,7 +3,8 @@
   <div class="card-body">
     <h5 class="card-title">{{ item.name }}</h5>
     <p class="card-text">{{ item.description }}</p>
-    <p class="card-text"><strong>Price:</strong> {{ item.price | currency: 'LKR ' }}</p>
+    <p class="card-text"><strong>Price:</strong> {{ item.price*currencyData.fromLkr | currency:
+      currencyData.selectedCurrency }}</p>
     <button class="btn btn-primary" (click)="addToCart(item)">Add to Cart</button>
     <ng-container *ngIf="addedToCart">
       <div class="alert alert-success">

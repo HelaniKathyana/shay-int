@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Currency } from 'src/app/model/Currency';
 import { Item } from 'src/app/model/Item';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-shop',
@@ -67,11 +69,16 @@ export class ShopComponent implements OnInit {
     },
   ];
 
-  selectedCurrency = 'LKR';
+  selectedCurrency: string;
+  currencyData: Currency;
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.dataService.currencyData.subscribe(data => {
+      this.currencyData = data;
+      this.selectedCurrency = this.currencyData ? this.currencyData.selectedCurrency : 'LKR';
+    });
   }
 
 }

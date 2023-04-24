@@ -1,5 +1,6 @@
-<div class="container">
+<div class="container" *ngIf="currencyData">
     <h2>Shopping Cart</h2>
-    <app-cart-item [cartItems]="cartItems" (itemRemoved)="onItemRemoved($event)"></app-cart-item>
-    <div><strong>Total Price: {{ totalPrice | currency: selectedCurrency }}</strong></div>
+    <app-cart-item [cartItems]="cartItems" (itemRemoved)="onItemRemoved()"></app-cart-item>
+    <div><strong>Total Price: {{ totalPrice*currencyData.fromLkr | currency: currencyData.selectedCurrency }}</strong>
+    </div>
 </div>
