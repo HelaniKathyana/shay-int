@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Currency } from 'src/app/model/Currency';
+import { CartService } from 'src/app/services/cart.service';
 import { DataService } from 'src/app/services/data.service';
 import { ExchangeRateService } from 'src/app/services/exchange-rate.service';
 
@@ -12,11 +13,16 @@ export class NavbarComponent implements OnInit {
 
   selectedCurrency = 'LKR';
   currencyData: Currency;
+  cartItemCount = 0;
 
-  constructor(private exchangeRateService: ExchangeRateService, private dataService: DataService) { }
+  constructor(private exchangeRateService: ExchangeRateService, private dataService: DataService, private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.fetchExchangeRates()
+    this.fetchExchangeRates();
+
+    this.cartService.getCartItemCount().subscribe(count => {
+      this.cartItemCount = count;
+    });
   }
 
   fetchExchangeRates() {

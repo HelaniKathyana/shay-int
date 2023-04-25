@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Item } from '../model/Item';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import { Item } from '../model/Item';
 export class CartService {
 
   items: Item[] = [];
+  private cartItemCount = new BehaviorSubject<number>(0);
 
   constructor() {
     // Retrieve the cart items from localStorage
@@ -22,6 +24,9 @@ export class CartService {
 
     // Save the cart items to localStorage
     localStorage.setItem('cartItems', JSON.stringify(this.items));
+
+    // Update the cart item count
+    this.cartItemCount.next(this.items.length);
   }
 
   getItems() {
@@ -38,5 +43,13 @@ export class CartService {
       this.items.splice(index, 1);
       localStorage.setItem('cartItems', JSON.stringify(this.items));
     }
+
+    // Update the cart item count
+    this.cartItemCount.next(this.items.length);
   }
+
+  getCartItemCount(): Observable<number> {
+    return this.cartItemCount.asObservable();
+  }
+
 }

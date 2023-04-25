@@ -10,10 +10,16 @@
           <a class="nav-link" routerLink="/"><i class="fas fa-home"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/cart"><i class="fas fa-shopping-cart"></i></a>
+          <a class="nav-link" routerLink="/cart">
+            <i class="fas fa-shopping-cart position-relative">
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <small>{{ cartItemCount }}</small>
+              </span>
+            </i>
+          </a>
         </li>
         <li class="nav-item">
-          <select class="form-control text-center" id="currencySelect" [(ngModel)]="selectedCurrency"
+          <select class="form-select form-select-sm text-center" id="currencySelect" [(ngModel)]="selectedCurrency"
             (ngModelChange)="fetchExchangeRates()">
             <option value="LKR">LKR</option>
             <option value="USD">USD</option>
